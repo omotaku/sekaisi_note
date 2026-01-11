@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>世界史ノート - 授業用</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+  <header>
+    <div class="header-left">
+      <h1>世界史ノート（授業用）</h1>
+    </div>
+    <div class="header-right">
+      <label for="search" class="visually-hidden">検索</label>
+      <input id="search" placeholder="検索：世紀/年/タイトル/タグを入力" aria-label="検索">
+      <select id="sortSelect">
+        <option value="new">新しい順</option>
+        <option value="year_desc">年代降順</option>
+        <option value="year_asc">年代昇順</option>
+      </select>
+    </div>
+  </header>
+  <main>
+    <section class="editor">
+      <div class="meta-row">
+        <label for="century" class="visually-hidden">世紀</label>
+        <input id="century" placeholder="世紀（例: 19）" aria-label="世紀">
+        <label for="year" class="visually-hidden">年</label>
+        <input id="year" placeholder="年（例: 1789）" aria-label="年">
+        <label for="lat" class="visually-hidden">緯度</label>
+        <input id="lat" placeholder="緯度（例: 35.68）" aria-label="緯度">
+        <label for="lng" class="visually-hidden">経度</label>
+        <input id="lng" placeholder="経度（例: 139.76）" aria-label="経度">
+        <button id="pickOnMap" class="tag-chip" aria-pressed="false">地図で選択</button>
+        <button id="approxPickBtn" class="tag-chip" aria-pressed="false">アバウト選択</button>
+      </div>
+      <label for="title" class="visually-hidden">タイトル</label>
+      <input id="title" placeholder="タイトル（例: フランス革命）" aria-label="タイトル">
+      <label for="tags" class="visually-hidden">タグ</label>
+      <input id="tags" placeholder="タグ（カンマ区切り）" aria-label="タグ">
+      <div class="editor-main">
+        <label for="content" class="visually-hidden">本文</label>
+        <textarea id="content" placeholder="授業中のメモをここに書きます。" aria-label="本文"></textarea>
+        <div id="preview" class="preview" hidden></div>
+      </div>
+      <div class="controls">
+        <button id="newBtn" aria-label="新規作成">新規</button>
+        <button id="saveBtn" aria-label="保存">保存</button>
+        <button id="deleteBtn" aria-label="削除">削除</button>
+        <button id="exportBtn" aria-label="JSONエクスポート">エクスポート(.json)</button>
+        <button id="togglePreview" aria-label="マークダウンプレビュー切替">プレビュー切替</button>
+        <button id="printBtn" aria-label="印刷">印刷</button>
+      </div>
+    </section>
+    <aside class="list">
+      <div id="map" style="height:320px; border-radius:8px; overflow:hidden; margin-bottom:12px"></div>
+      <h2>ノート一覧</h2>
+      <div class="tag-filters">
+        <strong>タグで絞る:</strong>
+        <div id="tagContainer"></div>
+      </div>
+      <div class="import-export">
+        <input id="fileInput" type="file" accept="application/json" style="display:none">
+        <button id="importBtn">JSONインポート</button>
+        <button id="csvBtn">CSVエクスポート</button>
+        <button id="backupRestoreBtn">ローカル復元</button>
+        <button id="provideInfoBtn">情報提供 (AI)</button>
+        <button id="summarizeBtn">要約生成 (AI)</button>
+      </div>
+      <div id="aiResults" style="margin-bottom:8px;color:#0f172a"></div>
+      <ul id="notesList"></ul>
+    </aside>
+  </main>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</body>
+</html>

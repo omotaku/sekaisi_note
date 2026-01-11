@@ -1,0 +1,60 @@
+* { box-sizing: border-box; }
+body { font-family: Inter, system-ui, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif; margin: 0; padding: 0; background:#f8fafc; color:#0f172a; }
+.root { max-width:1200px; margin:0 auto; }
+.container { padding:20px; }
+header { background:#1e40af; color:#fff; padding:18px 20px; display:flex; justify-content:space-between; align-items:center; }
+.header-left h1 { margin:0; font-size:20px; font-weight:700; }
+.header-right { display:flex; gap:10px; align-items:center; }
+.header-right input { padding:8px 10px; width:300px; border-radius:8px; border:1px solid #cbd5e1; }
+.header-right select { padding:8px 10px; border-radius:8px; border:1px solid #cbd5e1; }
+main { display:flex; gap:20px; padding:20px; }
+.editor { flex:2; display:flex; flex-direction:column; gap:12px; }
+.meta-row { display:flex; gap:8px; }
+.meta-row input { width:120px; }
+.editor input, .editor textarea { width:100%; padding:10px; font-size:16px; border:1px solid #e6eef8; border-radius:8px; }
+.editor input:focus, .editor textarea:focus { outline:2px solid #93c5fd; }
+.editor-main { display:flex; gap:16px; }
+.editor-main textarea { flex:1; height:320px; resize:vertical; font-size:15px; line-height:1.6; }
+.preview { flex:1; border:1px solid #e6eaf0; padding:12px; background:#fff; height:320px; overflow:auto; border-radius:8px; box-shadow:0 1px 3px rgba(2,6,23,0.06); }
+.controls { display:flex; gap:10px; }
+.list { width:360px; border-left:0; padding-left:0; }
+#tagContainer { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 12px 0; }
+.tag-chip { background:#f1f5f9; border:1px solid #e2e8f0; padding:6px 10px; border-radius:999px; font-size:13px; cursor:pointer; }
+.tag-chip.active { background:#60a5fa; color:#fff; border-color:#3b82f6; }
+.import-export { display:flex; gap:6px; margin-bottom:12px; }
+.import-export button { padding:8px 10px; font-size:13px; border-radius:8px; border:1px solid #e2e8f0; background:#fff; }
+
+/* map */
+#map { width:100%; height:320px; border-radius:8px; box-shadow:0 1px 4px rgba(2,6,23,0.06); margin-bottom:12px; }
+.leaflet-container { border-radius:8px; }
+
+/* visually hidden for accessible labels */
+.visually-hidden { position: absolute !important; height: 1px; width: 1px; overflow: hidden; clip: rect(1px, 1px, 1px, 1px); white-space: nowrap; border: 0; padding: 0; margin: -1px; }
+#notesList { list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px; }
+#notesList li { padding:12px; background:#ffffff; border-radius:10px; box-shadow:0 2px 6px rgba(16,24,40,0.04); cursor:pointer; display:flex; gap:12px; align-items:flex-start; }
+#notesList li[role="button"]:focus { box-shadow:0 8px 24px rgba(16,24,40,0.08); outline:none; }
+#notesList li .meta { font-size:13px; color:#475569; min-width:100px; text-align:center; }
+#notesList li .meta .year-badge { display:inline-block; background:#eef2ff; color:#1e3a8a; font-weight:700; padding:6px 12px; border-radius:10px; font-size:14px; }
+#notesList li .body { flex:1; }
+#notesList li .title { font-weight:700; font-size:15px; color:#0f172a; margin-bottom:6px; }
+#notesList li .excerpt { color:#475569; font-size:14px; line-height:1.4; max-height:3.6em; overflow:hidden; }
+#notesList li .tags { margin-top:8px; display:flex; gap:6px; flex-wrap:wrap; }
+#notesList li .tag-chip { background:#eef2ff; border-color:#c7ddff; color:#1e3a8a; padding:4px 8px; font-size:12px; }
+#notesList li:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(16,24,40,0.08); }
+.kbd { background:#f3f4f6; border-radius:4px; padding:2px 6px; font-size:12px; margin-left:6px; }
+
+@media (max-width: 900px){
+	main { flex-direction:column; }
+	.list { width:100%; }
+	.header-right input { width:180px; }
+}
+
+/* print styles */
+@media print{
+	body { background: #fff; color:#000; }
+	header, .controls, .import-export, .tag-filters, .header-right, .import-export button, .list { display: none !important; }
+	.editor { flex: none; width: 100%; }
+	textarea { border: none !important; box-shadow: none !important; }
+	pre { white-space: pre-wrap; font-family: inherit; font-size: 12pt; }
+	h1 { font-size: 18pt; }
+}
